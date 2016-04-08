@@ -18,6 +18,7 @@ class Scantailor < Formula
     end
   end
 
+  desc "Interactive post-processing tool for scanned pages"
   homepage "http://scantailor.org/"
 
   stable do
@@ -75,7 +76,19 @@ class Scantailor < Formula
   end
 
   def install
+    # The build fails with boost >= 1.59
+    # Upstream has fixed this in HEAD: https://github.com/scantailor/scantailor/pull/194
+    # New version tag requested 8th Apr 2016: https://github.com/scantailor/scantailor/issues/204
+    inreplace ["MainWindow.cpp", "ThumbnailSequence.cpp", "filters/deskew/Filter.cpp", "filters/fix_orientation/Filter.cpp", "filters/output/Filter.cpp", "filters/page_layout/Filter.cpp", "filters/page_split/Filter.cpp", "filters/select_content/Filter.cpp"] do |s|
+      s.gsub! " _1", " boost::lambda::_1"
+      s.gsub! " _2", " boost::lambda::_2", false # MainWindow.cpp doesn't have a _2
+      s.gsub! "bind(", "boost::lambda::bind(" unless s =~ /boost::lambda::bind/
+    end
     system "cmake", ".", "-DPNG_INCLUDE_DIR=#{MacOS::X11.include}", "-DCMAKE_CXX_FLAGS=-std=c++11 -stdlib=libc++", *std_cmake_args
     system "make", "install"
+  end
+
+  test do
+    assert_match version.to_s, shell_output("#{bin}/scantailor-cli")
   end
 end
