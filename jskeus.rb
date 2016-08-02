@@ -1,8 +1,8 @@
 class Jskeus < Formula
   desc "EusLisp software used by JSK at The University of Tokyo"
   homepage "https://github.com/euslisp/jskeus"
-  url "https://github.com/euslisp/jskeus/archive/1.0.10.tar.gz"
-  sha256 "038d394438dff837b9268dbec48063b33532669d5786201e2e67433fade371f1"
+  url "https://github.com/euslisp/jskeus/archive/1.0.13.tar.gz"
+  sha256 "234ae02f97975ee5e38bd2c87921dd541c8ad1d52e4971321307a96f038773cf"
   head "https://github.com/euslisp/jskeus.git"
 
   bottle do
@@ -33,7 +33,7 @@ class Jskeus < Formula
 
     executables = ["eus", "eus0", "eus1", "eus2", "euscomp", "eusg", "eusgl", "eusx", "irteus", "irteusgl"]
 
-    cd "#{prefix}" do
+    cd prefix do
       system "make"
 
       executables.each do |exec|
