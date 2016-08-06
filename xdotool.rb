@@ -1,8 +1,8 @@
 class Xdotool < Formula
   desc "Fake keyboard/mouse input and window management for X"
   homepage "http://www.semicomplete.com/projects/xdotool/"
-  url "https://github.com/jordansissel/xdotool/archive/v3.20160804.2.tar.gz"
-  sha256 "52b8aa08ff6e2d55c2c9a8eaa3601f210491676f8e637f3669ac84c562fc78c9"
+  url "https://github.com/jordansissel/xdotool/archive/v3.20160805.1.tar.gz"
+  sha256 "ddafca1239075c203769c17a5a184587731e56fbe0438c09d08f8af1704e117a"
 
   bottle do
     sha256 "21ce8342f3868e5fedb623587f95b247dfae5aaa7c413b154c081577d48316b2" => :el_capitan
