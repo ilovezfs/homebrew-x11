@@ -3,7 +3,7 @@ class Pyxplot < Formula
   homepage "http://pyxplot.org.uk/"
   url "http://pyxplot.org.uk/src/pyxplot_0.9.2.tar.gz"
   sha256 "1c592a0bc77caec445a8d72534471c01d66ca1806309e6c983847c2e0b95e689"
-  revision 1
+  revision 2
 
   bottle :disable, "Homebrew cannot currently build bottles against TeX"
 
@@ -20,11 +20,18 @@ class Pyxplot < Formula
   depends_on "readline"
 
   def install
+    # fix undefined symbol error for _history_list
+    ENV.prepend "LDFLAGS", "-lhistory"
+
     # changes install directory to Cellar, per instructions
     inreplace "Makefile.skel" do |s|
       s.change_make_var! "USRDIR", prefix
     end
     system "./configure"
     system "make", "install"
+  end
+
+  test do
+    system bin/"pyxplot", "-h"
   end
 end
