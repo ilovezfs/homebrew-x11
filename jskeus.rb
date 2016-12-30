@@ -1,8 +1,8 @@
 class Jskeus < Formula
   desc "EusLisp software used by JSK at The University of Tokyo"
   homepage "https://github.com/euslisp/jskeus"
-  url "https://github.com/euslisp/jskeus/archive/1.0.13.tar.gz"
-  sha256 "86437c939093d5c77776a6acf52453c49bdcb2b9d3b6e7956403ec34c476df7d"
+  url "https://github.com/euslisp/jskeus/archive/1.0.14.tar.gz"
+  sha256 "c2befbe3f6868bf7c23502957d38ba7a895f4817d22b041de8e2d7d3c3bbbd22"
   head "https://github.com/euslisp/jskeus.git"
 
   bottle do
